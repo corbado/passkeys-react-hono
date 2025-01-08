@@ -2,11 +2,11 @@
 
 # Typescript React.js and Hono Passkey Example App
 
-This is a sample implementation of
-the [Corbado React.js](https://github.com/corbado/javascript/tree/develop/packages/react) package
-and [Corbado Node.js](https://github.com/corbado/corbado-nodejs)
-SDK being integrated into a web
-application built with Hono on the backend and React.js on the frontend.
+This is a sample implementation of the [Corbado passkeys-first authentication solution](https://www.corbado.com) using
+React and Hono. The following packages are being used:
+
+- [Corbado React.js](https://github.com/corbado/javascript/tree/develop/packages/react)
+- [Corbado Node.js](https://github.com/corbado/corbado-nodejs)
 
 ## File structure
 
@@ -90,3 +90,9 @@ In another terminal session, run the following command in the `backend` director
 ```bash
 npm run dev
 ```
+
+## Passkeys support
+
+- Community for Developer Support: https://bit.ly/passkeys-community
+- Passkeys Debugger: https://www.passkeys-debugger.io/
+- Passkey Subreddit: https://www.reddit.com/r/passkey/
