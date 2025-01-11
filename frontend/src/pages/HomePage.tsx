@@ -4,29 +4,38 @@ import { UserContext } from "../context/user.tsx";
 import { Link } from "react-router";
 
 export default function HomePage() {
-    const { isAuthenticated, user } = useCorbado();
+    const { isAuthenticated, user, loading } = useCorbado();
     const userCtx = use(UserContext);
 
-    if (isAuthenticated && user) {
-        const city =
-            (userCtx.externalUserInfo.status === "success" &&
-                userCtx.externalUserInfo.user.city) ||
-            "unknown";
-
-        return (
-            <div>
-                <h1>
-                    Welcome {user.name} from {city}!
-                </h1>
-                <p>
-                    You now have access to everything and can visit the user
-                    area:
-                </p>
-                <Link to="/userarea" className="button">User area</Link>
-            </div>
-        );
+    if (loading) {
+        return <div className="loader" />;
     }
 
+    if (!isAuthenticated || !user) {
+        return <GuestHomePage />;
+    }
+
+    const city =
+        (userCtx.externalUserInfo.status === "success" &&
+            userCtx.externalUserInfo.user.city) ||
+        "unknown";
+
+    return (
+        <div>
+            <h1>
+                Welcome {user.name} from {city}!
+            </h1>
+            <p>
+                You now have access to everything and can visit the user area:
+            </p>
+            <Link to="/userarea" className="button">
+                User area
+            </Link>
+        </div>
+    );
+}
+
+function GuestHomePage() {
     return (
         <div>
             <h1>Welcome Guest!</h1>

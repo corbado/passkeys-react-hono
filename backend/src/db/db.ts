@@ -10,4 +10,5 @@ export interface User {
 const defaultData: { users: User[] } = { users: [] };
 const db = await JSONFilePreset(`${process.cwd()}/db.json`, defaultData);
 
+
 export default db;

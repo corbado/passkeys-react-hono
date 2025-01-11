@@ -26,32 +26,29 @@ export default function App() {
         >
             <QueryClientProvider client={queryClient}>
                 <UserProvider>
-                    <BrowserRouter>
-                        <Layout>
-                            <Routes>
-                                <Route path="/" element={<HomePage />} />
-                                <Route
-                                    path="/userarea"
-                                    element={<UserAreaPage />}
-                                />
-                                <Route
-                                    path="/signup"
-                                    element={<SignupPage />}
-                                />
-                                <Route path="/login" element={<LoginPage />} />
-                                <Route
-                                    path="/profile"
-                                    element={<ProfilePage />}
-                                />
-                                <Route
-                                    path="/signup/onboarding"
-                                    element={<OnboardingPage />}
-                                />
-                            </Routes>
-                        </Layout>
-                    </BrowserRouter>
+                    <RoutesDefinition />
                 </UserProvider>
             </QueryClientProvider>
         </CorbadoProvider>
+    );
+}
+
+function RoutesDefinition() {
+    return (
+        <BrowserRouter>
+            <Layout>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/userarea" element={<UserAreaPage />} />
+                    <Route path="/signup" element={<SignupPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/profile" element={<ProfilePage />} />
+                    <Route
+                        path="/signup/onboarding"
+                        element={<OnboardingPage />}
+                    />
+                </Routes>
+            </Layout>
+        </BrowserRouter>
     );
 }

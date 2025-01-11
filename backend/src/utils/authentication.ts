@@ -2,6 +2,7 @@ import { Config, SDK } from "@corbado/node-sdk";
 import type { Context } from "hono";
 import { getCookie } from "hono/cookie";
 
+// Retrieve environment variables
 const projectID = process.env.CORBADO_PROJECT_ID;
 const apiSecret = process.env.CORBADO_API_SECRET;
 if (!projectID) {
@@ -18,7 +19,6 @@ if (!frontendAPI) {
 if (!backendAPI) {
     throw Error("Backend API URL is not set");
 }
-
 // Initialize the Corbado Node.js SDK with the configuration
 const config = new Config(projectID, apiSecret, frontendAPI, backendAPI);
 const sdk = new SDK(config);
@@ -50,6 +50,7 @@ export async function getAuthenticatedUserFromAuthorizationHeader(c: Context) {
         return null;
     }
 }
+
 
 // Retrieve all identifiers for a given user ID
 export function getUserIdentifiers(userId: string) {

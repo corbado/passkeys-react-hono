@@ -15,15 +15,8 @@ export default function Layout({ children }: { children: ReactNode }) {
 }
 
 function Navbar() {
-    const { isAuthenticated, loading, logout } = useCorbado();
-    const navigate = useNavigate();
+    const { isAuthenticated } = useCorbado();
     const pathname = useLocation().pathname;
-
-    async function onLogout() {
-        if (!isAuthenticated || loading) return;
-        void logout();
-        navigate("/");
-    }
 
     return (
         <div>
@@ -81,15 +74,29 @@ function Navbar() {
                         </>
                     )}
                 </ul>
-                {isAuthenticated && (
-                    <button disabled={loading} onClick={onLogout}>
-                        Logout
-                    </button>
-                )}
+                {isAuthenticated && <LogoutButton />}
             </nav>
         </div>
     );
 }
+
+function LogoutButton() {
+    const { isAuthenticated, logout, loading } = useCorbado();
+    const navigate = useNavigate();
+
+    async function onLogout() {
+        if (!isAuthenticated || loading) return;
+        await logout();
+        navigate("/");
+    }
+
+    return (
+        <button disabled={loading} onClick={onLogout}>
+            Logout
+        </button>
+    );
+}
+
 
 function Footer() {
     return (

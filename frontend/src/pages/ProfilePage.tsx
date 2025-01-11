@@ -17,8 +17,6 @@ export default function ProfilePage() {
             ? userCtx.externalUserInfo
             : null;
 
-
-
     return (
         <div>
             <h1>Profile</h1>
@@ -47,8 +45,17 @@ export default function ProfilePage() {
                     ))}
                 </div>
             )}
-            <h2>Manage your Passkeys</h2>
-            <PasskeyList />
+            <PasskeyManagement />
         </div>
     );
 }
+
+function PasskeyManagement() {
+    return (
+        <>
+            <h2>Manage your Passkeys</h2>
+            <PasskeyList />
+        </>
+    );
+}
+
