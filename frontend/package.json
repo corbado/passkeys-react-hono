@@ -10,14 +10,14 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@corbado/react": "^2.18.0",
+        "@corbado/react": "^3.0.0",
         "@tanstack/react-query": "^5.62.11",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-router": "^7.1.1"
     },
     "devDependencies": {
-        "@corbado/types": "^2.11.2",
+        "@corbado/types": "^3.0.0",
         "@eslint/js": "^9.17.0",
         "@types/react": "^19.0.2",
         "@types/react-dom": "^19.0.2",

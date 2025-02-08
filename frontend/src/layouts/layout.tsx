@@ -86,8 +86,8 @@ function LogoutButton() {
 
     async function onLogout() {
         if (!isAuthenticated || loading) return;
-        await logout();
         navigate("/");
+        await logout();
     }
 
     return (
