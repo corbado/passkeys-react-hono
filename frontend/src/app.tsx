@@ -10,10 +10,30 @@ import SignupPage from "./pages/SignupPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import ProfilePage from "./pages/ProfilePage.tsx";
 import OnboardingPage from "./pages/OnboardingPage.tsx";
+import { useRef } from "react";
+import { sendEvent } from "@corbado/shared-util";
+import { useEffect } from "react";
+import { TelemetryEventType } from "@corbado/shared-util";
 
 const queryClient = new QueryClient();
 
 export default function App() {
+    const hasSentTelemetry = useRef(false);
+
+    useEffect(() => {
+        if (hasSentTelemetry.current) return;
+
+        void sendEvent({
+            type: TelemetryEventType.EXAMPLE_APPLICATION_OPENED,
+            payload: {
+                exampleName: "corbado/ts-react-ts-hono",
+            },
+            sdkVersion: "3.1.0",
+            sdkName: "React SDK",
+            identifier: import.meta.env.VITE_CORBADO_PROJECT_ID,
+        });
+    }, []);
+
     return (
         <CorbadoProvider
             projectId={import.meta.env.VITE_CORBADO_PROJECT_ID}
