@@ -21,12 +21,16 @@ export default function App() {
     const hasSentTelemetry = useRef(false);
 
     useEffect(() => {
-        if (hasSentTelemetry.current) return;
+        if (
+            hasSentTelemetry.current ||
+            import.meta.env.VITE_CORBADO_TELEMETRY_DISABLED === "true"
+        )
+            return;
 
         void sendEvent({
             type: TelemetryEventType.EXAMPLE_APPLICATION_OPENED,
             payload: {
-                exampleName: "corbado/ts-react-ts-hono",
+                exampleName: "corbado/passkeys-react-hono",
             },
             sdkVersion: "3.1.0",
             sdkName: "React SDK",
@@ -43,6 +47,11 @@ export default function App() {
             theme="cbo-custom-styles"
             // use our custom translations
             customTranslations={{ en: englishTranslations }}
+            telemetry={
+                import.meta.env.VITE_CORBADO_TELEMETRY_DISABLED === "true"
+                    ? false
+                    : undefined
+            }
         >
             <QueryClientProvider client={queryClient}>
                 <UserProvider>
